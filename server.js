@@ -1,5 +1,6 @@
 require("dotenv").config();
 const path = require("path");
+const os = require("os");
 const express = require("express");
 const fs = require("fs");
 const crypto = require("crypto");
@@ -9,6 +10,10 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const projectRoot = __dirname;
+const isVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
+const dataRoot =
+  process.env.DATA_DIR ||
+  (isVercel ? path.join(os.tmpdir(), "health-wealth") : path.join(projectRoot, "data"));
 
 async function connectDB() {
   const mongoUri = process.env.DATABASE_URL || process.env.MONGODB_URI;
@@ -18,6 +23,9 @@ async function connectDB() {
   }
   
   try {
+    if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
+      return;
+    }
     await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -127,11 +135,11 @@ app.use(
 app.use("/src", express.static(path.join(projectRoot, "src")));
 app.use("/assets", express.static(path.join(projectRoot, "assets")));
 
-const usersDbPath = path.join(projectRoot, "data", "users.json");
-const clinicsDbPath = path.join(projectRoot, "data", "clinics.json");
+const usersDbPath = path.join(dataRoot, "users.json");
+const clinicsDbPath = path.join(dataRoot, "clinics.json");
 
-if (!fs.existsSync(path.join(projectRoot, "data"))) {
-  fs.mkdirSync(path.join(projectRoot, "data"));
+if (!fs.existsSync(dataRoot)) {
+  fs.mkdirSync(dataRoot, { recursive: true });
 }
 
 function initializeDb() {
@@ -646,37 +654,42 @@ app.post("/api/symptoms/save", (req, res) => {
   res.json({ success: true, inquiry });
 });
 
-app.listen(PORT, async () => {
-  await connectDB();
-  
-  console.log(`
-  ╔════════════════════════════════════════════════════════╗
-  ║  🏥 Health Wealth Server Running!                      ║
-  ╠════════════════════════════════════════════════════════╣
-  ║  📍 URL: http://localhost:${PORT}                            ║
-  ║  🌍 Environment: ${process.env.NODE_ENV || "development"}                    ║
-  ║  📧 Email Service: ${process.env.SENDGRID_API_KEY ? "✅ SendGrid" : process.env.SMTP_USER ? "✅ SMTP (Gmail/Custom)" : "⚠️  Mock (Dev Only)"}   ║
-  ║  💾 Database: ${process.env.DATABASE_URL ? "✅ MongoDB" : "JSON Files (./data/)"}                     ║
-  ║  🏥 Real Clinics: 6 hospitals (Delhi region)          ║
-  ╚════════════════════════════════════════════════════════╝
-  
-  📚 API Endpoints:
-  • POST   /api/auth/register          - Create account (sends email)
-  • POST   /api/auth/login             - Sign in
-  • GET    /api/auth/profile           - Get user info
-  • GET    /api/clinics                - List all clinics
-  • GET    /api/clinics/near           - Find nearby clinics
-  • GET    /api/clinics/search         - Search by specialty
-  • POST   /api/email/clinic-inquiry   - Send appointment request
-  • POST   /api/email/contact          - Send contact form
-  • POST   /api/symptoms/save          - Save symptom history
-  
-  ⚙️  Configuration:
-  ${!process.env.SMTP_USER && !process.env.SENDGRID_API_KEY ? `⚠️  EMAIL NOT CONFIGURED - Update .env file` : `✅ Email configured with ${process.env.SENDGRID_API_KEY ? "SendGrid" : "SMTP"}`}
-  ✅ CORS enabled
-  ✅ Real clinic data loaded
-  
-  `);
-});
+if (!isVercel) {
+  app.listen(PORT, async () => {
+    await connectDB();
+    
+    console.log(`
+    ╔════════════════════════════════════════════════════════╗
+    ║  🏥 Health Wealth Server Running!                      ║
+    ╠════════════════════════════════════════════════════════╣
+    ║  📍 URL: http://localhost:${PORT}                            ║
+    ║  🌍 Environment: ${process.env.NODE_ENV || "development"}                    ║
+    ║  📧 Email Service: ${process.env.SENDGRID_API_KEY ? "✅ SendGrid" : process.env.SMTP_USER ? "✅ SMTP (Gmail/Custom)" : "⚠️  Mock (Dev Only)"}   ║
+    ║  💾 Database: ${process.env.DATABASE_URL ? "✅ MongoDB" : "JSON Files (./data/)"}                     ║
+    ║  🏥 Real Clinics: 6 hospitals (Delhi region)          ║
+    ╚════════════════════════════════════════════════════════╝
+    
+    📚 API Endpoints:
+    • POST   /api/auth/register          - Create account (sends email)
+    • POST   /api/auth/login             - Sign in
+    • GET    /api/auth/profile           - Get user info
+    • GET    /api/clinics                - List all clinics
+    • GET    /api/clinics/near           - Find nearby clinics
+    • GET    /api/clinics/search         - Search by specialty
+    • POST   /api/email/clinic-inquiry   - Send appointment request
+    • POST   /api/email/contact          - Send contact form
+    • POST   /api/symptoms/save          - Save symptom history
+    
+    ⚙️  Configuration:
+    ${!process.env.SMTP_USER && !process.env.SENDGRID_API_KEY ? `⚠️  EMAIL NOT CONFIGURED - Update .env file` : `✅ Email configured with ${process.env.SENDGRID_API_KEY ? "SendGrid" : "SMTP"}`}
+    ✅ CORS enabled
+    ✅ Real clinic data loaded
+    
+    `);
+  });
+} else {
+  void connectDB();
+}
 
+module.exports = app;
 
