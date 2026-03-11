@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symptom Mapper • Health Wealth</title>
+  <link rel="stylesheet" href="./src/output.css" />
+</head>
+<body class="bg-brand-gradient min-h-dvh">
+  <header class="sticky top-0 z-50">
+    <nav class="animate-nav-fade-down border-b border-white/10 bg-slate-950/40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/30">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <a href="/index.html" class="group flex items-center gap-3">
+          <span class="relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl ring-1 ring-white/15">
+            <img src="./assets/logo-health.jpeg" alt="Health Wealth logo" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+          </span>
+          <span class="leading-tight">
+            <span class="block text-sm font-semibold tracking-tight text-white">Health Wealth</span>
+            <span class="block text-xs text-white/70">HealthTech &amp; Wellbeing</span>
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-6 md:flex">
+          <a class="text-sm text-white/80 transition hover:text-white" href="/index.html#features">Features</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/wellness.html">Wellness Nudge</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/mapper.html">Symptom Mapper</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/contact.html">Contact</a>
+          <a class="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" href="/mapper.html">
+            Find care
+          </a>
+        </div>
+
+        <button
+          id="menuBtn"
+          class="inline-flex items-center justify-center rounded-xl p-2 text-white/90 ring-1 ring-white/15 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <svg id="iconHamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+          </svg>
+          <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden h-6 w-6">
+            <path d="M18 6 6 18" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden">
+        <div class="animate-menu-pop mx-4 mb-4 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur sm:mx-6">
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/index.html#features">Features</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/wellness.html">Wellness Nudge</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/mapper.html">Symptom Mapper</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/contact.html">Contact</a>
+          <a class="mt-2 block rounded-xl bg-white px-3 py-2 text-center text-sm font-semibold text-slate-950 transition hover:bg-white/90" href="/mapper.html">Find care</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6">
+    <section class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.45)] sm:p-10">
+      <div class="pointer-events-none absolute inset-0 opacity-80 [mask-image:radial-gradient(520px_circle_at_18%_16%,black,transparent)]">
+        <div class="h-full w-full bg-gradient-to-br from-brand-500/40 via-brand-400/10 to-transparent"></div>
+      </div>
+
+      <div class="relative grid gap-8 lg:grid-cols-2 lg:items-start">
+        <div class="max-w-xl">
+          <p class="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+            Symptom-to-Specialist Mapper • Demo
+          </p>
+          <h1 class="animate-fade-up-2 mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">Find the right specialist faster.</h1>
+          <p class="animate-fade-up-3 mt-4 text-pretty text-sm text-white/75 sm:text-base">
+            Enter symptoms and get suggested specialist types plus a list of nearby affordable clinic options. This is a UI demo (not a medical diagnosis).
+          </p>
+
+          <form id="symptomForm" class="animate-fade-up-3 mt-6 grid gap-3">
+            <label class="grid gap-2">
+              <span class="text-sm font-semibold text-white/90">Symptoms</span>
+              <input
+                id="symptoms"
+                class="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-white/20"
+                placeholder="e.g., headache, chest pain, cough, fever"
+                autocomplete="off"
+                required
+              />
+              <span class="text-xs text-white/60">Comma-separated works best.</span>
+            </label>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              <label class="grid gap-2">
+                <span class="text-sm font-semibold text-white/90">Severity</span>
+                <select id="severity" class="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-white/20">
+                  <option value="mild">Mild</option>
+                  <option value="moderate" selected>Moderate</option>
+                  <option value="severe">Severe</option>
+                </select>
+              </label>
+
+              <label class="grid gap-2">
+                <span class="text-sm font-semibold text-white/90">Duration</span>
+                <select id="duration" class="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-white/20">
+                  <option value="today">Today</option>
+                  <option value="2-3-days" selected>2–3 days</option>
+                  <option value="1-week">~1 week</option>
+                  <option value="2-weeks">2+ weeks</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              <label class="grid gap-2">
+                <span class="text-sm font-semibold text-white/90">Distance</span>
+                <select id="distance" class="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-white/20">
+                  <option value="3">Within 3 km</option>
+                  <option value="5" selected>Within 5 km</option>
+                  <option value="10">Within 10 km</option>
+                </select>
+              </label>
+
+              <label class="grid gap-2">
+                <span class="text-sm font-semibold text-white/90">Budget</span>
+                <select id="budget" class="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-white/20">
+                  <option value="low" selected>Low-cost</option>
+                  <option value="mid">Mid-range</option>
+                  <option value="any">Any</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <button class="inline-flex flex-1 items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="submit">
+                Get suggestions
+              </button>
+              <button id="clearBtn" class="inline-flex flex-1 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:-translate-y-0.5 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="relative">
+          <div class="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-500/15 via-transparent to-brand-400/10 blur-2xl"></div>
+
+          <div class="relative grid gap-4">
+            <div class="rounded-3xl border border-white/10 bg-slate-950/35 p-6 shadow-[0_25px_90px_-40px_rgba(96,165,250,0.65)] backdrop-blur">
+              <div class="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-6 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-xl animate-shimmer"></div>
+              <p class="text-xs text-white/70">Suggested specialist</p>
+              <p id="specialistText" class="mt-2 text-xl font-semibold">Enter symptoms to begin</p>
+              <div id="safetyNote" class="mt-3 hidden rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-white/70">
+                If symptoms are severe (e.g. chest pain, trouble breathing, fainting), seek urgent care immediately.
+              </div>
+            </div>
+
+            <div class="rounded-3xl border border-white/10 bg-slate-950/35 p-6 shadow-[0_25px_90px_-40px_rgba(59,130,246,0.55)] backdrop-blur">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-semibold">Clinic results</p>
+                <div class="flex items-center gap-2">
+                  <label class="inline-flex items-center gap-2 text-xs text-white/70">
+                    <input id="openNow" type="checkbox" class="h-4 w-4 rounded border-white/20 bg-slate-950/40 text-brand-500" />
+                    Open now
+                  </label>
+                  <label class="inline-flex items-center gap-2 text-xs text-white/70">
+                    <input id="affordableOnly" type="checkbox" class="h-4 w-4 rounded border-white/20 bg-slate-950/40 text-brand-500" checked />
+                    Affordable
+                  </label>
+                </div>
+              </div>
+              <div id="results" class="mt-4 grid gap-3">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/70">
+                  Submit the form to see clinic options.
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-white/60">Map embed can be added next (Google Maps / OpenStreetMap iframe).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    const iconHamburger = document.getElementById("iconHamburger");
+    const iconClose = document.getElementById("iconClose");
+
+    function setOpen(isOpen) {
+      btn.setAttribute("aria-expanded", String(isOpen));
+      menu.classList.toggle("hidden", !isOpen);
+      iconHamburger.classList.toggle("hidden", isOpen);
+      iconClose.classList.toggle("hidden", !isOpen);
+    }
+
+    btn?.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+
+    menu?.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) setOpen(false);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    const $ = (id) => document.getElementById(id);
+    const form = $("symptomForm");
+    const clearBtn = $("clearBtn");
+    const specialistText = $("specialistText");
+    const safetyNote = $("safetyNote");
+    const results = $("results");
+    const openNow = $("openNow");
+    const affordableOnly = $("affordableOnly");
+
+    const clinicSeed = [
+      { name: "BlueCare Community Clinic", distanceKm: 1.8, rating: 4.6, openNow: true, price: "low", etaMin: 8 },
+      { name: "RiverSide Family Practice", distanceKm: 2.9, rating: 4.4, openNow: false, price: "mid", etaMin: 12 },
+      { name: "City Health Outpatient", distanceKm: 4.2, rating: 4.2, openNow: true, price: "mid", etaMin: 16 },
+      { name: "Affordable Care Point", distanceKm: 3.6, rating: 4.1, openNow: true, price: "low", etaMin: 14 },
+      { name: "Sunrise Diagnostics & Clinic", distanceKm: 6.5, rating: 4.3, openNow: false, price: "any", etaMin: 22 },
+    ];
+
+    function normalizeSymptoms(s) {
+      return s
+        .toLowerCase()
+        .split(",")
+        .map((x) => x.trim())
+        .filter(Boolean);
+    }
+
+    function mapSpecialist(symptoms, severity) {
+      const set = new Set(symptoms);
+      const has = (k) => set.has(k);
+
+      const urgent =
+        severity === "severe" ||
+        has("chest pain") ||
+        has("shortness of breath") ||
+        has("trouble breathing") ||
+        has("fainting") ||
+        has("severe bleeding");
+
+      if (urgent) {
+        return { specialist: "Urgent Care / Emergency", showSafety: true };
+      }
+      if (has("skin rash") || has("itching")) return { specialist: "Dermatologist", showSafety: false };
+      if (has("toothache") || has("gum pain")) return { specialist: "Dentist", showSafety: false };
+      if (has("headache") || has("migraine")) return { specialist: "General Physician (consider Neurologist)", showSafety: false };
+      if (has("fever") || has("cough") || has("sore throat")) return { specialist: "General Physician / ENT", showSafety: false };
+      if (has("stomach pain") || has("nausea") || has("vomiting")) return { specialist: "General Physician (consider Gastroenterologist)", showSafety: false };
+      return { specialist: "General Physician", showSafety: false };
+    }
+
+    function renderResults(items) {
+      results.innerHTML = "";
+      if (!items.length) {
+        results.innerHTML =
+          '<div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/70">No clinics match your filters. Try increasing distance or turning off filters.</div>';
+        return;
+      }
+
+      for (const c of items) {
+        const priceLabel = c.price === "low" ? "Affordable" : c.price === "mid" ? "Mid-range" : "Any";
+        const openLabel = c.openNow ? "Open now" : "Closed";
+        const openClass = c.openNow ? "bg-brand-500/15 ring-brand-300/20" : "bg-white/10 ring-white/15";
+        const el = document.createElement("div");
+        el.className =
+          "group rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-0.5 hover:bg-white/10";
+        el.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-sm font-semibold">${c.name}</p>
+              <p class="mt-1 text-xs text-white/70">${c.distanceKm.toFixed(1)} km • ETA ${c.etaMin} min • ${c.rating.toFixed(
+          1
+        )}★</p>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+              <span class="rounded-full px-2 py-1 text-[10px] font-semibold text-white/80 ring-1 ${openClass}">${openLabel}</span>
+              <span class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">${priceLabel}</span>
+            </div>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2 text-[11px] text-white/70">
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-2 py-1">Walk-in</span>
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-2 py-1">Low wait</span>
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-2 py-1">Directions</span>
+          </div>
+        `;
+        results.appendChild(el);
+      }
+    }
+
+    function applyFilters({ distance, budget }) {
+      let items = [...clinicSeed].filter((c) => c.distanceKm <= distance);
+      if (budget !== "any") items = items.filter((c) => c.price === budget || (budget === "low" && c.price === "low"));
+      if (openNow.checked) items = items.filter((c) => c.openNow);
+      if (affordableOnly.checked) items = items.filter((c) => c.price === "low");
+      items.sort((a, b) => a.distanceKm - b.distanceKm);
+      renderResults(items);
+    }
+
+    function run() {
+      const symptoms = normalizeSymptoms($("symptoms").value || "");
+      const severity = $("severity").value;
+      const duration = $("duration").value;
+      void duration;
+      const distance = Number($("distance").value || "5");
+      const budget = $("budget").value;
+
+      const { specialist, showSafety } = mapSpecialist(symptoms, severity);
+      specialistText.textContent = specialist;
+      safetyNote.classList.toggle("hidden", !showSafety);
+
+      applyFilters({ distance, budget });
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      run();
+    });
+
+    clearBtn.addEventListener("click", () => {
+      $("symptoms").value = "";
+      $("severity").value = "moderate";
+      $("duration").value = "2-3-days";
+      $("distance").value = "5";
+      $("budget").value = "low";
+      openNow.checked = false;
+      affordableOnly.checked = true;
+      specialistText.textContent = "Enter symptoms to begin";
+      safetyNote.classList.add("hidden");
+      results.innerHTML =
+        '<div class="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/70">Submit the form to see clinic options.</div>';
+    });
+
+    [openNow, affordableOnly, $("distance"), $("budget")].forEach((el) => {
+      el.addEventListener("change", () => {
+        if (specialistText.textContent !== "Enter symptoms to begin") run();
+      });
+    });
+  </script>
+</body>
+</html>
+

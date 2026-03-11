@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthTech & Wellbeing</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+<body class="bg-brand-gradient min-h-dvh">
+  <header class="sticky top-0 z-50">
+    <nav class="animate-nav-fade-down border-b border-white/10 bg-slate-950/40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/30">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <a href="/index.html" class="group flex items-center gap-3">
+          <span class="relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl ring-1 ring-white/15">
+            <img src="./assets/logo-health.jpeg" alt="Health Wealth logo" class="h-full w-full object-cover transition duration-300 group-hover:scale-105"/>
+          </span>
+          <span class="leading-tight">
+            <span class="block text-sm font-semibold tracking-tight text-white">Health Wealth</span>
+            <span class="block text-xs text-white/70">HealthTech &amp; Wellbeing</span>
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-6 md:flex">
+          <a class="text-sm text-white/80 transition hover:text-white" href="#features">Features</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/wellness.html">Wellness Nudge</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/mapper.html">Symptom Mapper</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/contact.html">Contact</a>
+          <button id="loginBtn" class="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60">
+            Login
+          </button>
+          <a class="rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" href="/wellness.html">
+            Try the timer
+          </a>
+        </div>
+
+        <button
+          id="menuBtn"
+          class="inline-flex items-center justify-center rounded-xl p-2 text-white/90 ring-1 ring-white/15 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <svg id="iconHamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+          </svg>
+          <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden h-6 w-6">
+            <path d="M18 6 6 18" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden">
+        <div class="animate-menu-pop mx-4 mb-4 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur sm:mx-6">
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="#features">Features</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/wellness.html">Wellness Nudge</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/mapper.html">Symptom Mapper</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/contact.html">Contact</a>
+          <a class="mt-2 block rounded-xl bg-white px-3 py-2 text-center text-sm font-semibold text-slate-950 transition hover:bg-white/90" href="/wellness.html">Try the timer</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6">
+    <section class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.45)] sm:p-10">
+      <div class="pointer-events-none absolute inset-0 opacity-80 [mask-image:radial-gradient(520px_circle_at_18%_16%,black,transparent)]">
+        <div class="h-full w-full bg-gradient-to-br from-brand-500/40 via-brand-400/10 to-transparent"></div>
+      </div>
+      <div class="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-500/20 blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-brand-400/15 blur-3xl"></div>
+
+      <div class="relative grid items-center gap-10 lg:grid-cols-2">
+        <div class="max-w-xl">
+          <p class="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+            HealthTech &amp; Wellbeing • Blue gradient UI
+          </p>
+          <h1 class="animate-fade-up-2 mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
+            Health Wealth: micro-break nudges + faster care discovery.
+          </h1>
+          <p class="animate-fade-up-3 mt-4 text-pretty text-sm text-white/75 sm:text-base">
+            Stay consistent with a gamified work timer (stretch, hydration, breathing) and find nearby affordable clinics with our symptom-to-specialist mapper.
+          </p>
+
+          <div id="get-started" class="animate-fade-up-3 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a class="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" href="/wellness.html">
+              Start Wellness Timer
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </a>
+            <a class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 shadow-lg shadow-brand-500/10 transition hover:-translate-y-0.5 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" href="/mapper.html">
+              Find Specialist
+            </a>
+          </div>
+
+          <div class="animate-fade-up-3 mt-6 flex flex-wrap gap-2 text-xs text-white/70">
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1">Private by design</span>
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1">Responsive &amp; fast</span>
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1">Affordable care focus</span>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-500/15 via-transparent to-brand-400/10 blur-2xl"></div>
+
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            <div class="animate-floaty relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35 p-5 shadow-[0_25px_80px_-35px_rgba(96,165,250,0.6)] backdrop-blur">
+              <div class="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-6 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-xl animate-shimmer"></div>
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm font-semibold">Wellness Nudge</p>
+                  <p class="mt-1 text-xs text-white/70">Focus timer + micro-break reminders</p>
+                </div>
+                <span class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">LIVE</span>
+              </div>
+              <div class="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
+                <div class="flex items-center justify-between text-xs text-white/70">
+                  <span>Session</span>
+                  <span class="font-semibold text-white/90">24:18</span>
+                </div>
+                <div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+                  <div class="h-full w-[70%] rounded-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_18px_rgba(59,130,246,0.55)]"></div>
+                </div>
+                <div class="mt-3 grid grid-cols-3 gap-2 text-[11px]">
+                  <div class="rounded-lg border border-white/10 bg-slate-950/30 px-2 py-2">
+                    <p class="text-white/70">Stretch</p>
+                    <p class="mt-1 font-semibold">+10</p>
+                  </div>
+                  <div class="rounded-lg border border-white/10 bg-slate-950/30 px-2 py-2">
+                    <p class="text-white/70">Hydrate</p>
+                    <p class="mt-1 font-semibold">+8</p>
+                  </div>
+                  <div class="rounded-lg border border-white/10 bg-slate-950/30 px-2 py-2">
+                    <p class="text-white/70">Breathe</p>
+                    <p class="mt-1 font-semibold">+6</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="animate-floaty-2 relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/35 p-5 shadow-[0_25px_80px_-35px_rgba(59,130,246,0.55)] backdrop-blur sm:translate-y-6 lg:translate-y-0">
+              <div class="pointer-events-none absolute -inset-x-10 -top-10 h-24 -rotate-6 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-xl animate-shimmer"></div>
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm font-semibold">Symptom Mapper</p>
+                  <p class="mt-1 text-xs text-white/70">Symptoms → specialist + nearby clinics</p>
+                </div>
+                <span class="rounded-full bg-white/10 px-2 py-1 text-[10px] font-semibold text-white/80 ring-1 ring-white/15">BETA</span>
+              </div>
+
+              <div class="mt-4 space-y-2">
+                <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-xs text-white/70">Suggested specialist</p>
+                  <p class="mt-1 font-semibold">General Physician → Cardiologist (if needed)</p>
+                </div>
+                <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div class="flex items-center justify-between">
+                    <p class="text-xs text-white/70">Nearest clinic</p>
+                    <p class="text-xs font-semibold text-white/90">2.1 km</p>
+                  </div>
+                  <div class="mt-2 flex items-center justify-between text-[11px] text-white/70">
+                    <span class="rounded-full bg-brand-500/15 px-2 py-1 ring-1 ring-brand-300/20">Affordable</span>
+                    <span>Open now</span>
+                    <span>4.6★</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="mt-12 scroll-mt-28">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="text-2xl font-semibold">Features</h2>
+          <p class="mt-1 max-w-2xl text-sm text-white/70">
+            Everything you need to build healthier workdays and discover affordable care faster.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <a class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10" href="/wellness.html">Wellness</a>
+          <a class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 transition hover:bg-white/10" href="/mapper.html">Mapper</a>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(96,165,250,0.9)] transition hover:-translate-y-1 hover:bg-white/10">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/15 ring-1 ring-brand-300/20 transition group-hover:bg-brand-500/20">
+              <svg class="h-5 w-5 text-brand-100" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold">Smart focus timer</p>
+              <p class="mt-1 text-sm text-white/70">Pomodoro or custom intervals with clean progress UI.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(59,130,246,0.85)] transition hover:-translate-y-1 hover:bg-white/10">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/15 ring-1 ring-brand-300/20 transition group-hover:bg-brand-500/20">
+              <svg class="h-5 w-5 text-brand-100" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 7c1.5-1.5 3.5-2 5-2s3.5.5 5 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M5 12c2-2 4.5-3 7-3s5 .9 7 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 17c1.5-1 3.2-1.5 5-1.5S15.5 16 17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold">Micro-break nudges</p>
+              <p class="mt-1 text-sm text-white/70">Stretch, hydrate, and breathing prompts—quick and effective.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(96,165,250,0.9)] transition hover:-translate-y-1 hover:bg-white/10">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/15 ring-1 ring-brand-300/20 transition group-hover:bg-brand-500/20">
+              <svg class="h-5 w-5 text-brand-100" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3l2.6 5.4 6 .9-4.3 4.2 1 6-5.3-2.8-5.3 2.8 1-6L3.4 9.3l6-.9L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold">Streaks & rewards</p>
+              <p class="mt-1 text-sm text-white/70">Points, streaks, and badges to keep habits consistent.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(59,130,246,0.85)] transition hover:-translate-y-1 hover:bg-white/10">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/15 ring-1 ring-brand-300/20 transition group-hover:bg-brand-500/20">
+              <svg class="h-5 w-5 text-brand-100" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M10 3h4v4h-4V3Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M6 7h12v14H6V7Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M9 11h6M9 15h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold">Symptom wizard</p>
+              <p class="mt-1 text-sm text-white/70">Simple symptom + severity inputs to guide next steps.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(96,165,250,0.9)] transition hover:-translate-y-1 hover:bg-white/10">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/15 ring-1 ring-brand-300/20 transition group-hover:bg-brand-500/20">
+              <svg class="h-5 w-5 text-brand-100" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s7-4.5 7-10a7 7 0 0 0-14 0c0 5.5 7 10 7 10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold">Nearby clinics</p>
+              <p class="mt-1 text-sm text-white/70">Sort by distance, “open now”, and affordability tags.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(59,130,246,0.85)] transition hover:-translate-y-1 hover:bg-white/10">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-500/15 ring-1 ring-brand-300/20 transition group-hover:bg-brand-500/20">
+              <svg class="h-5 w-5 text-brand-100" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 11h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 5v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 21h10a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2-2h-2l-2 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold">Privacy-first UX</p>
+              <p class="mt-1 text-sm text-white/70">Designed to be helpful without storing sensitive inputs by default.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="wellness" class="mt-12">
+      <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.45)] sm:p-10">
+        <div class="pointer-events-none absolute inset-0 opacity-80 [mask-image:radial-gradient(520px_circle_at_18%_16%,black,transparent)]">
+          <div class="h-full w-full bg-gradient-to-br from-brand-500/40 via-brand-400/10 to-transparent"></div>
+        </div>
+
+        <div class="relative grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div class="max-w-xl">
+            <p class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Wellness Nudge • Micro-breaks that stick
+            </p>
+            <h2 class="mt-4 text-2xl font-semibold sm:text-3xl">Micro-breaks, gamified.</h2>
+            <p class="mt-4 text-sm text-white/75 sm:text-base">
+              Focus timer with gentle reminders to stretch, hydrate, and breathe. Earn points, build streaks, and stay consistent throughout your workday.
+            </p>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">Timer types</p>
+                <p class="mt-1 text-sm font-semibold">Pomodoro & custom</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">Stored as</p>
+                <p class="mt-1 text-sm font-semibold">Browser data</p>
+              </div>
+            </div>
+
+            <a class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-white/90" href="/wellness.html">
+              Try the timer
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </a>
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-500/15 via-transparent to-brand-400/10 blur-2xl"></div>
+
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-slate-950/35 p-5 backdrop-blur">
+                <span class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">FEATURE</span>
+                <p class="mt-3 text-sm font-semibold">Smart Timer</p>
+                <p class="mt-1 text-xs text-white/70">Pomodoro or custom intervals with progress tracking.</p>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-slate-950/35 p-5 backdrop-blur">
+                <span class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">FEATURE</span>
+                <p class="mt-3 text-sm font-semibold">Nudge Reminders</p>
+                <p class="mt-1 text-xs text-white/70">Stretch, hydrate, breathe—quick and effective breaks.</p>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-slate-950/35 p-5 backdrop-blur">
+                <span class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">FEATURE</span>
+                <p class="mt-3 text-sm font-semibold">Gamified Streaks</p>
+                <p class="mt-1 text-xs text-white/70">Earn points and build consistent daily habits.</p>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-slate-950/35 p-5 backdrop-blur">
+                <span class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">FEATURE</span>
+                <p class="mt-3 text-sm font-semibold">No Account Needed</p>
+                <p class="mt-1 text-xs text-white/70">Data saved locally in your browser.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="mt-12">
+      <h2 class="text-2xl font-semibold">How it works</h2>
+      <div class="mt-4 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p class="text-sm font-semibold">1) Choose a focus timer</p>
+          <p class="mt-2 text-sm text-white/70">Start a session and earn points for completing focus blocks.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p class="text-sm font-semibold">2) Get wellness nudges</p>
+          <p class="mt-2 text-sm text-white/70">Short reminders for stretch, hydrate, and breathing micro-breaks.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p class="text-sm font-semibold">3) Find care faster</p>
+          <p class="mt-2 text-sm text-white/70">Enter symptoms → suggested specialists → nearby clinic options.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="mapper" class="mt-12 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.45)] sm:p-10">
+      <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-10">
+        <div class="pointer-events-none absolute inset-0 opacity-80 [mask-image:radial-gradient(520px_circle_at_18%_16%,black,transparent)]">
+          <div class="h-full w-full bg-gradient-to-br from-brand-500/40 via-brand-400/10 to-transparent"></div>
+        </div>
+
+        <div class="relative grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div class="max-w-xl">
+            <p class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
+              <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+              Symptom Mapper • Find care faster
+            </p>
+            <h2 class="mt-4 text-2xl font-semibold sm:text-3xl">Chat to find the right specialist.</h2>
+            <p class="mt-4 text-sm text-white/75 sm:text-base">
+              Describe your symptoms in a simple conversation. We'll suggest specialist types and show nearby clinics—all sorted by distance and affordability.
+            </p>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">How it works</p>
+                <p class="mt-1 text-sm font-semibold">3 simple messages</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">Results include</p>
+                <p class="mt-1 text-sm font-semibold">Specialists + clinics</p>
+              </div>
+            </div>
+
+            <a class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-white/90" href="/mapper.html">
+              Try the mapper
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-500/15 via-transparent to-brand-400/10 blur-2xl"></div>
+
+            <div class="grid gap-4 lg:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-slate-950/35 overflow-hidden backdrop-blur shadow-[0_25px_90px_-40px_rgba(96,165,250,0.65)]">
+                <div class="relative w-full h-80 bg-slate-950/50">
+                  <iframe 
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=72.1234%2C28.5244%2C72.1434%2C28.5444&layer=mapnik" 
+                    class="w-full h-full border-0" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                  <div class="absolute inset-0 pointer-events-none bg-gradient-to-br from-transparent via-transparent to-slate-950/20"></div>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <div class="rounded-2xl border border-white/10 bg-slate-950/35 p-4 backdrop-blur">
+                  <div class="flex items-end gap-2 mb-3">
+                    <div class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-brand-500/20 ring-1 ring-brand-300/25">
+                      <svg class="h-3 w-3 text-brand-100" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="10" opacity="0.5" />
+                        <circle cx="12" cy="12" r="6" />
+                      </svg>
+                    </div>
+                    <div class="rounded-lg rounded-bl-none border border-white/10 bg-brand-500/10 px-3 py-1">
+                      <p class="text-xs text-white/90">Found 3 clinics near you</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition">
+                  <div class="flex items-start justify-between mb-2">
+                    <div>
+                      <p class="text-sm font-semibold text-white">City Health Clinic</p>
+                      <p class="text-xs text-white/70 mt-1">General & Family Medicine</p>
+                    </div>
+                    <span class="text-xs font-semibold text-brand-100 bg-brand-500/20 px-2 py-1 rounded-full">2.1 km</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-white/60 mt-3">
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" opacity="0.5"></circle></svg>
+                      Open now
+                    </span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-5-6 5 2-7-6-4h7l3-7z"></path></svg>
+                      4.8★
+                    </span>
+                    <span>•</span>
+                    <span class="text-brand-100 font-semibold">Affordable</span>
+                  </div>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition">
+                  <div class="flex items-start justify-between mb-2">
+                    <div>
+                      <p class="text-sm font-semibold text-white">MediCare Plus</p>
+                      <p class="text-xs text-white/70 mt-1">Multi-specialty Hospital</p>
+                    </div>
+                    <span class="text-xs font-semibold text-white/80 bg-white/10 px-2 py-1 rounded-full">3.5 km</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-white/60 mt-3">
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" opacity="0.5"></circle></svg>
+                      Open now
+                    </span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-5-6 5 2-7-6-4h7l3-7z"></path></svg>
+                      4.6★
+                    </span>
+                    <span>•</span>
+                    <span class="text-white/70">Moderate</span>
+                  </div>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition">
+                  <div class="flex items-start justify-between mb-2">
+                    <div>
+                      <p class="text-sm font-semibold text-white">Quick Care Clinic</p>
+                      <p class="text-xs text-white/70 mt-1">Urgent & Primary Care</p>
+                    </div>
+                    <span class="text-xs font-semibold text-brand-100 bg-brand-500/20 px-2 py-1 rounded-full">1.8 km</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-white/60 mt-3">
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" opacity="0.5"></circle></svg>
+                      Opens 8 AM
+                    </span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1">
+                      <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-6 4 2 7-6-5-6 5 2-7-6-4h7l3-7z"></path></svg>
+                      4.5★
+                    </span>
+                    <span>•</span>
+                    <span class="text-brand-100 font-semibold">Very Affordable</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-12 border-t border-white/10 pt-10">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="text-sm font-semibold text-white">Health Wealth</p>
+          <p class="mt-2 text-xs text-white/60">HealthTech & Wellbeing platform for healthier workdays and affordable care discovery.</p>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-white/70">Version</p>
+          <p class="mt-2 inline-flex items-center gap-2 rounded-full border border-brand-300/25 bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-100">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+            Beta
+          </p>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-white/70">Built by</p>
+          <p class="mt-2 text-xs text-white/70">
+            <span class="block">Quantum Overrides</span>
+            <span class="block">Team</span>
+          </p>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide text-white/70">Team Members</p>
+          <ul class="mt-2 space-y-1 text-xs text-white/70">
+            <li>Rohit Sikder</li>
+            <li>Sijauddin Mallick</li>
+            <li>Shusovan Sarkar</li>
+            <li>Priyanshu Chatterjee</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-white/10 pt-6 text-center text-xs text-white/50">
+        <p>&copy; 2024 Health Wealth. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div id="authModal" class="fixed inset-0 z-40 hidden bg-black/50 backdrop-blur-sm animate-fade-up">
+      <div class="fixed inset-0 flex items-center justify-center p-4">
+        <div class="relative w-full max-w-md rounded-3xl border border-white/10 bg-slate-950/95 p-6 shadow-2xl animate-scale-up sm:p-8">
+          <button id="closeAuthModal" class="absolute right-4 top-4 p-2 text-white/60 hover:text-white transition">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18" />
+              <path d="M6 6l12 12" />
+            </svg>
+          </button>
+          <div id="loginForm" class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">Welcome back</h2>
+            <p class="text-sm text-white/60">Sign in to your Health Wealth account</p>
+
+            <div class="space-y-3">
+              <label class="block">
+                <span class="text-xs font-semibold text-white/70 uppercase">Email</span>
+                <input id="loginEmail" type="email" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-brand-400/50 focus:bg-white/10" placeholder="you@example.com" required />
+              </label>
+
+              <label class="block">
+                <span class="text-xs font-semibold text-white/70 uppercase">Password</span>
+                <input id="loginPassword" type="password" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-brand-400/50 focus:bg-white/10" placeholder="••••••••" required />
+              </label>
+
+              <div id="loginError" class="hidden rounded-xl bg-red-500/10 border border-red-500/30 px-4 py-2 text-xs text-red-200"></div>
+
+              <button id="loginSubmitBtn" class="w-full rounded-xl bg-brand-500 py-3 text-sm font-semibold text-white transition hover:bg-brand-400 active:scale-95">
+                Sign in
+              </button>
+
+              <div class="text-center text-sm text-white/60">
+                Don't have an account? <button id="switchToRegister" type="button" class="text-brand-200 hover:text-brand-100 font-semibold">Create one</button>
+              </div>
+            </div>
+          </div>
+          <div id="registerForm" class="hidden space-y-4">
+            <h2 class="text-2xl font-semibold text-white">Get started</h2>
+            <p class="text-sm text-white/60">Create your Health Wealth account</p>
+
+            <div class="space-y-3">
+              <label class="block">
+                <span class="text-xs font-semibold text-white/70 uppercase">Full Name</span>
+                <input id="regName" type="text" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-brand-400/50 focus:bg-white/10" placeholder="John Doe" required />
+              </label>
+
+              <label class="block">
+                <span class="text-xs font-semibold text-white/70 uppercase">Email</span>
+                <input id="regEmail" type="email" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-brand-400/50 focus:bg-white/10" placeholder="you@example.com" required />
+              </label>
+
+              <label class="block">
+                <span class="text-xs font-semibold text-white/70 uppercase">Phone (optional)</span>
+                <input id="regPhone" type="tel" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-brand-400/50 focus:bg-white/10" placeholder="+91-98765-43210" />
+              </label>
+
+              <label class="block">
+                <span class="text-xs font-semibold text-white/70 uppercase">Password</span>
+                <input id="regPassword" type="password" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/90 outline-none transition focus:border-brand-400/50 focus:bg-white/10" placeholder="••••••••" required />
+              </label>
+
+              <div id="regError" class="hidden rounded-xl bg-red-500/10 border border-red-500/30 px-4 py-2 text-xs text-red-200"></div>
+
+              <button id="regSubmitBtn" class="w-full rounded-xl bg-brand-500 py-3 text-sm font-semibold text-white transition hover:bg-brand-400 active:scale-95">
+                Create account
+              </button>
+
+              <div class="text-center text-sm text-white/60">
+                Already have an account? <button id="switchToLogin" type="button" class="text-brand-200 hover:text-brand-100 font-semibold">Sign in</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    const iconHamburger = document.getElementById("iconHamburger");
+    const iconClose = document.getElementById("iconClose");
+
+    function setOpen(isOpen) {
+      btn.setAttribute("aria-expanded", String(isOpen));
+      menu.classList.toggle("hidden", !isOpen);
+      iconHamburger.classList.toggle("hidden", isOpen);
+      iconClose.classList.toggle("hidden", !isOpen);
+    }
+
+    btn?.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+
+    menu?.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) setOpen(false);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    const authModal = document.getElementById("authModal");
+    const loginBtn = document.getElementById("loginBtn");
+    const closeAuthModal = document.getElementById("closeAuthModal");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const switchToRegister = document.getElementById("switchToRegister");
+    const switchToLogin = document.getElementById("switchToLogin");
+
+    loginBtn?.addEventListener("click", () => {
+      authModal.classList.remove("hidden");
+    });
+
+    closeAuthModal?.addEventListener("click", () => {
+      authModal.classList.add("hidden");
+    });
+
+    authModal?.addEventListener("click", (e) => {
+      if (e.target === authModal) authModal.classList.add("hidden");
+    });
+
+    switchToRegister?.addEventListener("click", () => {
+      loginForm.classList.add("hidden");
+      registerForm.classList.remove("hidden");
+    });
+
+    switchToLogin?.addEventListener("click", () => {
+      registerForm.classList.add("hidden");
+      loginForm.classList.remove("hidden");
+    });
+
+    let currentToken = localStorage.getItem("healthWealth_token");
+
+    async function loginUser() {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const error = document.getElementById("loginError");
+
+      error.classList.add("hidden");
+
+      try {
+        const response = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          error.textContent = data.error || "Login failed";
+          error.classList.remove("hidden");
+          return;
+        }
+
+        currentToken = data.token;
+        localStorage.setItem("healthWealth_token", data.token);
+        localStorage.setItem("healthWealth_user", JSON.stringify(data.user));
+
+        authModal.classList.add("hidden");
+        loadDynamicClinics();
+        showNotification(`Welcome back, ${data.user.name}!`);
+      } catch (err) {
+        error.textContent = "Network error. Try again.";
+        error.classList.remove("hidden");
+      }
+    }
+
+    async function registerUser() {
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      const phone = document.getElementById("regPhone").value || "";
+      const error = document.getElementById("regError");
+
+      error.classList.add("hidden");
+
+      if (!name || !email || !password) {
+        error.textContent = "Please fill in all required fields";
+        error.classList.remove("hidden");
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, phone })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          error.textContent = data.error || "Registration failed";
+          error.classList.remove("hidden");
+          return;
+        }
+
+        currentToken = data.token;
+        localStorage.setItem("healthWealth_token", data.token);
+        localStorage.setItem("healthWealth_user", JSON.stringify(data.user));
+
+        authModal.classList.add("hidden");
+        showNotification(`Welcome, ${data.user.name}! Account created.`);
+      } catch (err) {
+        error.textContent = "Network error. Try again.";
+        error.classList.remove("hidden");
+      }
+    }
+
+    document.getElementById("loginSubmitBtn")?.addEventListener("click", loginUser);
+    document.getElementById("regSubmitBtn")?.addEventListener("click", registerUser);
+
+    document.getElementById("loginPassword")?.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") loginUser();
+    });
+
+    document.getElementById("regPassword")?.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") registerUser();
+    });
+
+    async function loadDynamicClinics() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+          const { latitude, longitude } = position.coords;
+
+          try {
+            const response = await fetch(
+              `/api/clinics/near?lat=${latitude}&lng=${longitude}`
+            );
+            const data = await response.json();
+
+            const mapContainer = document.querySelector('iframe');
+            if (mapContainer) {
+              const bbox = `${longitude - 0.1},${latitude - 0.1},${longitude + 0.1},${latitude + 0.1}`;
+              mapContainer.src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`;
+            }
+
+            console.log("Nearby clinics:", data.clinics);
+          } catch (err) {
+            console.error("Error loading clinics:", err);
+          }
+        });
+      }
+    }
+
+    loadDynamicClinics();
+
+    function showNotification(message, duration = 3000) {
+      const notification = document.createElement("div");
+      notification.className = `fixed top-4 right-4 z-50 rounded-xl bg-brand-500 text-white px-4 py-3 animate-slide-in-right shadow-lg max-w-xs`;
+      notification.textContent = message;
+
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.remove();
+      }, duration);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+  <style>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.3s ease-out;
+    }
+
+    .animate-scale-up {
+      animation: scaleUp 0.3s ease-out;
+    }
+
+    .animate-slide-in-right {
+      animation: slideInRight 0.3s ease-out;
+    }
+  </style>
+</body>
+</html>

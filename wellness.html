@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellness Nudge • Health Wealth</title>
+  <link rel="stylesheet" href="./src/output.css" />
+  <style>
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .time-picker-modal {
+      animation: slideUpAndFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideUpAndFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .overlay-fade {
+      animation: fadeIn 0.3s ease-out;
+      transition: opacity 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    button {
+      transition: all 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    input[type="number"]:focus {
+      animation: inputPulse 0.3s ease-out;
+    }
+
+    @keyframes inputPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-brand-gradient min-h-dvh">
+  <header class="sticky top-0 z-50">
+    <nav class="animate-nav-fade-down border-b border-white/10 bg-slate-950/40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/30">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <a href="/index.html" class="group flex items-center gap-3">
+          <span class="relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl ring-1 ring-white/15">
+            <img src="./assets/logo-health.jpeg" alt="Health Wealth logo" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+          </span>
+          <span class="leading-tight">
+            <span class="block text-sm font-semibold tracking-tight text-white">Health Wealth</span>
+            <span class="block text-xs text-white/70">HealthTech &amp; Wellbeing</span>
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-6 md:flex">
+          <a class="text-sm text-white/80 transition hover:text-white" href="/index.html#features">Features</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/wellness.html">Wellness Nudge</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/mapper.html">Symptom Mapper</a>
+          <a class="text-sm text-white/80 transition hover:text-white" href="/contact.html">Contact</a>
+          <a class="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" href="/wellness.html">
+            Try the timer
+          </a>
+        </div>
+
+        <button
+          id="menuBtn"
+          class="inline-flex items-center justify-center rounded-xl p-2 text-white/90 ring-1 ring-white/15 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="mobileMenu"
+          aria-expanded="false"
+        >
+          <svg id="iconHamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+          </svg>
+          <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden h-6 w-6">
+            <path d="M18 6 6 18" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden md:hidden">
+        <div class="animate-menu-pop mx-4 mb-4 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur sm:mx-6">
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/index.html#features">Features</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/wellness.html">Wellness Nudge</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/mapper.html">Symptom Mapper</a>
+          <a class="block rounded-xl px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white" href="/contact.html">Contact</a>
+          <a class="mt-2 block rounded-xl bg-white px-3 py-2 text-center text-sm font-semibold text-slate-950 transition hover:bg-white/90" href="/wellness.html">Try the timer</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 pb-16 pt-10 sm:px-6">
+    <section class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.45)] sm:p-10">
+      <div class="pointer-events-none absolute inset-0 opacity-80 [mask-image:radial-gradient(520px_circle_at_18%_16%,black,transparent)]">
+        <div class="h-full w-full bg-gradient-to-br from-brand-500/40 via-brand-400/10 to-transparent"></div>
+      </div>
+      <div class="relative grid gap-8 lg:grid-cols-2 lg:items-start">
+        <div class="max-w-xl">
+          <p class="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
+            Wellness Nudge • Micro-breaks that actually stick
+          </p>
+          <h1 class="animate-fade-up-2 mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">Micro-breaks, gamified.</h1>
+          <p class="animate-fade-up-3 mt-4 text-pretty text-sm text-white/75 sm:text-base">
+            Use a focus timer and get gentle nudges to stretch, hydrate, and breathe. Earn points, build streaks, and stay consistent.
+          </p>
+
+          <div class="animate-fade-up-3 mt-6 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+              <p class="text-xs text-white/70">Today’s streak</p>
+              <p class="mt-1 text-2xl font-semibold" id="streakText">0 days</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+              <p class="text-xs text-white/70">Points</p>
+              <p class="mt-1 text-2xl font-semibold"><span id="pointsText">0</span> pts</p>
+            </div>
+          </div>
+
+          <div class="animate-fade-up-3 mt-4 flex flex-wrap gap-2 text-xs text-white/70">
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1">No account needed</span>
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1">Saved in this browser</span>
+            <span class="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1">Fully responsive</span>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="pointer-events-none absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-500/15 via-transparent to-brand-400/10 blur-2xl"></div>
+
+          <div class="relative rounded-3xl border border-white/10 bg-slate-950/35 p-6 shadow-[0_25px_90px_-40px_rgba(96,165,250,0.65)] backdrop-blur">
+            <div class="pointer-events-none absolute -inset-x-10 -top-10 h-24 rotate-6 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-xl animate-shimmer"></div>
+
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold">Focus session</p>
+                <p class="mt-1 text-xs text-white/70">Complete focus blocks to earn points</p>
+              </div>
+              <span id="modeChip" class="rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">FOCUS</span>
+            </div>
+
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p class="text-xs text-white/70">Time</p>
+                <p id="timeText" class="mt-2 font-mono text-4xl font-semibold tracking-tight">25:00</p>
+                <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                  <div id="progressBar" class="h-full w-0 rounded-full bg-gradient-to-r from-brand-400 to-brand-600 shadow-[0_0_18px_rgba(59,130,246,0.55)]"></div>
+                </div>
+                <p class="mt-2 text-xs text-white/60" id="progressText">0% complete</p>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p class="text-xs text-white/70">Settings</p>
+                <div class="mt-3 grid gap-3">
+                  <button id="focusTimeBtn" class="flex items-center justify-between gap-3 text-sm rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2 transition hover:bg-slate-950/60 hover:border-white/20 w-full">
+                    <span class="text-white/80">Focus time (hh:mm:ss)</span>
+                    <span id="focusTimeDisplay" class="text-right text-sm font-semibold text-brand-300 font-mono">00:25:00</span>
+                  </button>
+                  <div class="flex items-center justify-between gap-3 text-sm">
+                    <span class="text-white/80">Break (auto)</span>
+                    <span id="breakMinDisplay" class="w-24 text-right text-sm font-semibold text-brand-300 font-mono">00:05:00</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-3 text-sm">
+                    <span class="text-white/80">Nudge every (auto)</span>
+                    <span id="nudgeEveryMinDisplay" class="w-24 text-right text-sm font-semibold text-brand-300 font-mono">00:20:00</span>
+                  </div>
+                </div>
+                <p class="mt-3 text-xs text-white/60">💡 Break = 1/5 of focus time. Nudges = 4/5 of focus time.</p>
+              </div>
+            </div>
+
+            <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+              <button id="startBtn" class="inline-flex flex-1 items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-white/10 transition hover:-translate-y-0.5 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+                Start
+              </button>
+              <button id="pauseBtn" class="inline-flex flex-1 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 shadow-lg shadow-brand-500/10 transition hover:-translate-y-0.5 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+                Pause
+              </button>
+              <button id="resetBtn" class="inline-flex flex-1 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:-translate-y-0.5 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+                Reset
+              </button>
+            </div>
+
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <p class="text-xs text-white/70">Next reminder</p>
+                  <span id="nextNudgeChip" class="hidden rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25">READY</span>
+                </div>
+                <p class="mt-2 font-mono text-2xl font-semibold tracking-tight" id="nextNudgeText">—</p>
+                <p class="mt-2 text-xs text-white/60">Shows during focus mode. Snooze pauses nudges for 5 minutes.</p>
+              </div>
+
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p class="text-xs text-white/70">Quick actions</p>
+                <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                  <button id="testNudgeBtn" class="animate-pulse-glow inline-flex items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+                    Test reminder
+                  </button>
+                  <button id="clearDataBtn" class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+                    Reset stats
+                  </button>
+                </div>
+                <p class="mt-3 text-xs text-white/60">Tip: set “Nudge every” to 5 min to see reminders faster.</p>
+              </div>
+            </div>
+
+            <div class="mt-5 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">Focus blocks</p>
+                <p class="mt-1 text-lg font-semibold"><span id="blocksText">0</span></p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">Nudges done</p>
+                <p class="mt-1 text-lg font-semibold"><span id="nudgesText">0</span></p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <p class="text-xs text-white/70">Level</p>
+                <p class="mt-1 text-lg font-semibold">L<span id="levelText">1</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="nudgeOverlay" class="fixed inset-0 z-[60] hidden items-end justify-center bg-slate-950/60 p-4 backdrop-blur sm:items-center">
+      <div class="animate-nudge-in w-full max-w-lg rounded-3xl border border-white/10 bg-slate-950/75 p-6 shadow-[0_40px_120px_-60px_rgba(59,130,246,0.7)]">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="text-xs text-white/70">Micro-break nudge</p>
+            <p id="nudgeTitle" class="mt-1 text-xl font-semibold">Hydration</p>
+          </div>
+          <button id="closeNudge" class="rounded-xl p-2 text-white/80 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white" type="button" aria-label="Close nudge">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+              <path d="M18 6 6 18" />
+              <path d="M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <p id="nudgeDesc" class="mt-3 text-sm text-white/70">
+          Drink a glass of water. Your body will thank you.
+        </p>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <button id="doneNudge" class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+            I did it (+ points)
+          </button>
+          <button id="snoozeNudge" class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+            Snooze 5 min
+          </button>
+        </div>
+        <p class="mt-3 text-xs text-white/60">Tip: small breaks improve focus and reduce strain.</p>
+      </div>
+    </div>
+
+    <div id="timePickerOverlay" class="fixed inset-0 z-[70] hidden items-center justify-center bg-slate-950/60 p-4 backdrop-blur overlay-fade">
+      <div class="time-picker-modal w-full max-w-md rounded-3xl border border-white/10 bg-slate-950/75 p-6 shadow-[0_40px_120px_-60px_rgba(59,130,246,0.7)]">
+        <p class="text-xs text-white/70 mb-1">Set focus time</p>
+        <p class="text-xl font-semibold mb-6">Hour : Minute : Second</p>
+
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="flex flex-col items-center">
+            <button id="hoursIncBtn" class="mb-2 p-2 rounded-lg bg-brand-500/20 hover:bg-brand-500/40 transition text-white" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path d="M12 19V5M5 12h14" />
+              </svg>
+            </button>
+            <input id="hoursInput" type="number" min="0" max="23" step="1" class="w-16 rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2 text-center text-2xl font-semibold text-white outline-none focus:border-white/20" value="00" />
+            <button id="hoursDecBtn" class="mt-2 p-2 rounded-lg bg-brand-500/20 hover:bg-brand-500/40 transition text-white" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path d="M5 12h14" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <button id="minutesIncBtn" class="mb-2 p-2 rounded-lg bg-brand-500/20 hover:bg-brand-500/40 transition text-white" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path d="M12 19V5M5 12h14" />
+              </svg>
+            </button>
+            <input id="minutesInput" type="number" min="0" max="59" step="1" class="w-16 rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2 text-center text-2xl font-semibold text-white outline-none focus:border-white/20" value="25" />
+            <button id="minutesDecBtn" class="mt-2 p-2 rounded-lg bg-brand-500/20 hover:bg-brand-500/40 transition text-white" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path d="M5 12h14" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <button id="secondsIncBtn" class="mb-2 p-2 rounded-lg bg-brand-500/20 hover:bg-brand-500/40 transition text-white" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path d="M12 19V5M5 12h14" />
+              </svg>
+            </button>
+            <input id="secondsInput" type="number" min="0" max="59" step="1" class="w-16 rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2 text-center text-2xl font-semibold text-white outline-none focus:border-white/20" value="00" />
+            <button id="secondsDecBtn" class="mt-2 p-2 rounded-lg bg-brand-500/20 hover:bg-brand-500/40 transition text-white" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5">
+                <path d="M5 12h14" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <button id="cancelTimeBtn" class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+            Cancel
+          </button>
+          <button id="confirmTimeBtn" class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60" type="button">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    const iconHamburger = document.getElementById("iconHamburger");
+    const iconClose = document.getElementById("iconClose");
+
+    function setOpen(isOpen) {
+      btn.setAttribute("aria-expanded", String(isOpen));
+      menu.classList.toggle("hidden", !isOpen);
+      iconHamburger.classList.toggle("hidden", isOpen);
+      iconClose.classList.toggle("hidden", !isOpen);
+    }
+
+    btn?.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+
+    menu?.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) setOpen(false);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    const $ = (id) => document.getElementById(id);
+
+    const timeText = $("timeText");
+    const progressBar = $("progressBar");
+    const progressText = $("progressText");
+    const modeChip = $("modeChip");
+    const startBtn = $("startBtn");
+    const pauseBtn = $("pauseBtn");
+    const resetBtn = $("resetBtn");
+
+    const focusTimeBtn = $("focusTimeBtn");
+    const focusTimeDisplay = $("focusTimeDisplay");
+    const breakMinDisplay = $("breakMinDisplay");
+    const nudgeEveryMinDisplay = $("nudgeEveryMinDisplay");
+
+    const timePickerOverlay = $("timePickerOverlay");
+    const hoursInput = $("hoursInput");
+    const minutesInput = $("minutesInput");
+    const secondsInput = $("secondsInput");
+    const hoursIncBtn = $("hoursIncBtn");
+    const hoursDecBtn = $("hoursDecBtn");
+    const minutesIncBtn = $("minutesIncBtn");
+    const minutesDecBtn = $("minutesDecBtn");
+    const secondsIncBtn = $("secondsIncBtn");
+    const secondsDecBtn = $("secondsDecBtn");
+    const confirmTimeBtn = $("confirmTimeBtn");
+    const cancelTimeBtn = $("cancelTimeBtn");
+
+    const pointsText = $("pointsText");
+    const streakText = $("streakText");
+    const blocksText = $("blocksText");
+    const nudgesText = $("nudgesText");
+    const levelText = $("levelText");
+
+    const overlay = $("nudgeOverlay");
+    const closeNudge = $("closeNudge");
+    const doneNudge = $("doneNudge");
+    const snoozeNudge = $("snoozeNudge");
+    const nudgeTitle = $("nudgeTitle");
+    const nudgeDesc = $("nudgeDesc");
+    const nextNudgeText = $("nextNudgeText");
+    const nextNudgeChip = $("nextNudgeChip");
+    const testNudgeBtn = $("testNudgeBtn");
+    const clearDataBtn = $("clearDataBtn");
+
+    const STORAGE_KEY = "healthwealth_wellness_v1";
+
+    const nudges = [
+      { key: "stretch", title: "Stretch", desc: "Stand up and stretch your shoulders and neck for 30 seconds.", points: 10 },
+      { key: "hydrate", title: "Hydration", desc: "Drink a glass of water (or a few big sips).", points: 8 },
+      { key: "breathe", title: "Breathing", desc: "Box breathing: inhale 4 • hold 4 • exhale 4 • hold 4 (1 minute).", points: 6 },
+    ];
+
+    function todayKey(d = new Date()) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return null;
+        return JSON.parse(raw);
+      } catch {
+        return null;
+      }
+    }
+
+    function saveState(next) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    }
+
+    let state =
+      loadState() || {
+        points: 0,
+        streak: 0,
+        lastStreakDay: "",
+        focusBlocks: 0,
+        nudgesDone: 0,
+        lastNudgeAtMs: 0,
+      };
+
+    function computeLevel(points) {
+      return Math.max(1, Math.floor(points / 100) + 1);
+    }
+
+    function updateStreakIfNeeded() {
+      const t = todayKey();
+      if (state.lastStreakDay === t) return;
+
+      if (!state.lastStreakDay) {
+        state.streak = Math.max(state.streak, 1);
+        state.lastStreakDay = t;
+        return;
+      }
+
+      const prev = new Date(state.lastStreakDay + "T00:00:00");
+      const now = new Date(t + "T00:00:00");
+      const diffDays = Math.round((now - prev) / 86400000);
+
+      if (diffDays === 1) state.streak += 1;
+      else if (diffDays > 1) state.streak = 1;
+      state.lastStreakDay = t;
+    }
+
+    function renderStats() {
+      pointsText.textContent = String(state.points);
+      streakText.textContent = `${state.streak} day${state.streak === 1 ? "" : "s"}`;
+      blocksText.textContent = String(state.focusBlocks);
+      nudgesText.textContent = String(state.nudgesDone);
+      levelText.textContent = String(computeLevel(state.points));
+    }
+
+    function fmtTime(totalSeconds) {
+      if (totalSeconds >= 3600) {
+        return fmtTimeWithHours(totalSeconds);
+      }
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function fmtTimeWithHours(totalSeconds) {
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+      return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function parseTimeString(str) {
+      const parts = String(str).trim().split(":").map(p => parseInt(p, 10) || 0);
+      if (parts.length === 3) {
+        return parts[0] * 3600 + parts[1] * 60 + parts[2];
+      } else if (parts.length === 2) {
+        return parts[0] * 60 + parts[1];
+      } else if (parts.length === 1) {
+        return parts[0];
+      }
+      return 0;
+    }
+
+    let mode = "focus";
+    let totalSeconds = 25 * 60;
+    let remainingSeconds = totalSeconds;
+    let running = false;
+    let tickHandle = null;
+    let lastTickAt = 0;
+    let snoozedUntilMs = 0;
+
+    function readSettings() {
+      const focusTimeStr = focusTimeDisplay.textContent || "00:25:00";
+      const focusSeconds = Math.max(5, parseTimeString(focusTimeStr)); // Min 5 seconds
+      const breakSeconds = Math.max(1, Math.round(focusSeconds / 5)); // Auto-calculated: 1/5 of focus time
+      const nudgeEverySeconds = Math.max(5, Math.round((focusSeconds * 4) / 5)); // Auto-calculated: 4/5 of focus time
+      return { focusSeconds, breakSeconds, nudgeEverySeconds };
+    }
+
+    function updateDisplays() {
+      const { breakSeconds, nudgeEverySeconds } = readSettings();
+      breakMinDisplay.textContent = fmtTimeWithHours(breakSeconds);
+      nudgeEveryMinDisplay.textContent = fmtTimeWithHours(nudgeEverySeconds);
+    }
+
+    function updateFocusTimeDisplay() {
+      const h = String(hoursInput.value || 0).padStart(2, "0");
+      const m = String(minutesInput.value || 0).padStart(2, "0");
+      const s = String(secondsInput.value || 0).padStart(2, "0");
+      const timeStr = `${h}:${m}:${s}`;
+      focusTimeDisplay.textContent = timeStr;
+      updateDisplays();
+    }
+
+    function openTimePicker() {
+      const currentTime = focusTimeDisplay.textContent || "00:25:00";
+      const [h, m, s] = currentTime.split(":").map(x => parseInt(x, 10) || 0);
+      hoursInput.value = String(h).padStart(2, "0");
+      minutesInput.value = String(m).padStart(2, "0");
+      secondsInput.value = String(s).padStart(2, "0");
+      timePickerOverlay.classList.remove("hidden");
+      timePickerOverlay.classList.add("flex");
+      // Trigger animation
+      setTimeout(() => {
+        timePickerOverlay.style.opacity = "1";
+      }, 10);
+    }
+
+    function closeTimePicker() {
+      // Add fade out animation
+      timePickerOverlay.style.opacity = "0";
+      setTimeout(() => {
+        timePickerOverlay.classList.add("hidden");
+        timePickerOverlay.classList.remove("flex");
+        timePickerOverlay.style.opacity = "1";
+      }, 300);
+    }
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      modeChip.textContent = nextMode.toUpperCase();
+      modeChip.className =
+        nextMode === "focus"
+          ? "rounded-full bg-brand-500/20 px-2 py-1 text-[10px] font-semibold text-brand-100 ring-1 ring-brand-300/25"
+          : "rounded-full bg-white/10 px-2 py-1 text-[10px] font-semibold text-white/80 ring-1 ring-white/15";
+      const { focusSeconds, breakSeconds } = readSettings();
+      totalSeconds = (nextMode === "focus" ? focusSeconds : breakSeconds);
+      remainingSeconds = totalSeconds;
+      renderTimer();
+    }
+
+    function renderTimer() {
+      timeText.textContent = fmtTime(Math.max(0, remainingSeconds));
+      const pct = totalSeconds === 0 ? 0 : Math.round(((totalSeconds - remainingSeconds) / totalSeconds) * 100);
+      progressBar.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+      progressText.textContent = `${Math.max(0, Math.min(100, pct))}% complete`;
+      document.title = `${fmtTime(Math.max(0, remainingSeconds))} • Wellness Nudge`;
+    }
+
+    function openNudge(nudge) {
+      nudgeTitle.textContent = nudge.title;
+      nudgeDesc.textContent = nudge.desc;
+      overlay.classList.remove("hidden");
+      overlay.classList.add("flex");
+      overlay.dataset.nudgeKey = nudge.key;
+      overlay.dataset.nudgePoints = String(nudge.points);
+    }
+
+    function closeNudgeModal() {
+      overlay.classList.add("hidden");
+      overlay.classList.remove("flex");
+      overlay.dataset.nudgeKey = "";
+      overlay.dataset.nudgePoints = "";
+    }
+
+    function maybeTriggerNudge(nowMs) {
+      if (!running) return;
+      if (mode !== "focus") return;
+      if (nowMs < snoozedUntilMs) return;
+      if (!overlay.classList.contains("hidden")) return;
+
+      const { nudgeEverySeconds } = readSettings();
+      const intervalMs = nudgeEverySeconds * 1000;
+      if (!state.lastNudgeAtMs) state.lastNudgeAtMs = nowMs;
+
+      if (nowMs - state.lastNudgeAtMs >= intervalMs) {
+        state.lastNudgeAtMs = nowMs;
+        saveState(state);
+        const pick = nudges[Math.floor(Math.random() * nudges.length)];
+        openNudge(pick);
+      }
+    }
+
+    function updateNextNudgeUI(nowMs = Date.now()) {
+      const { nudgeEverySeconds } = readSettings();
+      const intervalMs = nudgeEverySeconds * 1000;
+
+      if (!running || mode !== "focus") {
+        nextNudgeText.textContent = "Start focus to enable";
+        nextNudgeChip.classList.add("hidden");
+        return;
+      }
+
+      if (nowMs < snoozedUntilMs) {
+        const left = Math.max(0, Math.ceil((snoozedUntilMs - nowMs) / 1000));
+        nextNudgeText.textContent = `Snoozed • ${fmtTime(left)}`;
+        nextNudgeChip.classList.add("hidden");
+        return;
+      }
+
+      const base = state.lastNudgeAtMs || nowMs;
+      const dueAt = base + intervalMs;
+      const left = Math.max(0, Math.ceil((dueAt - nowMs) / 1000));
+
+      if (left <= 0) {
+        nextNudgeText.textContent = "Ready now";
+        nextNudgeChip.classList.remove("hidden");
+      } else {
+        nextNudgeText.textContent = fmtTime(left);
+        nextNudgeChip.classList.add("hidden");
+      }
+    }
+
+    function completeFocusBlock() {
+      state.points += 25;
+      state.focusBlocks += 1;
+      updateStreakIfNeeded();
+      saveState(state);
+      renderStats();
+    }
+
+    function tick() {
+      const now = Date.now();
+      if (!lastTickAt) lastTickAt = now;
+      const delta = Math.floor((now - lastTickAt) / 1000);
+      if (delta <= 0) {
+        maybeTriggerNudge(now);
+        updateNextNudgeUI(now);
+        return;
+      }
+      lastTickAt += delta * 1000;
+      remainingSeconds = Math.max(0, remainingSeconds - delta);
+
+      if (remainingSeconds <= 0) {
+        if (mode === "focus") {
+          completeFocusBlock();
+          setMode("break");
+        } else {
+          setMode("focus");
+        }
+      }
+
+      renderTimer();
+      maybeTriggerNudge(now);
+      updateNextNudgeUI(now);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      lastTickAt = 0;
+      tickHandle = setInterval(tick, 250);
+      updateNextNudgeUI();
+    }
+
+    function pause() {
+      running = false;
+      if (tickHandle) clearInterval(tickHandle);
+      tickHandle = null;
+      lastTickAt = 0;
+      updateNextNudgeUI();
+    }
+
+    function reset() {
+      pause();
+      state.lastNudgeAtMs = 0;
+      snoozedUntilMs = 0;
+      saveState(state);
+      setMode("focus");
+      updateNextNudgeUI();
+    }
+
+    function applySettingsToCurrentMode() {
+      // Simply reapply current mode which will recalculate from updated settings
+      setMode(mode);
+    }
+
+    startBtn.addEventListener("click", start);
+    pauseBtn.addEventListener("click", pause);
+    resetBtn.addEventListener("click", reset);
+
+    focusTimeBtn.addEventListener("click", openTimePicker);
+
+    // Time picker controls
+    [hoursInput, minutesInput, secondsInput].forEach(input => {
+      input.addEventListener("change", () => {
+        const h = Math.min(23, Math.max(0, parseInt(hoursInput.value || 0, 10)));
+        const m = Math.min(59, Math.max(0, parseInt(minutesInput.value || 0, 10)));
+        const s = Math.min(59, Math.max(0, parseInt(secondsInput.value || 0, 10)));
+        hoursInput.value = String(h).padStart(2, "0");
+        minutesInput.value = String(m).padStart(2, "0");
+        secondsInput.value = String(s).padStart(2, "0");
+      });
+      input.addEventListener("input", () => {
+        const h = Math.min(23, Math.max(0, parseInt(hoursInput.value || 0, 10)));
+        const m = Math.min(59, Math.max(0, parseInt(minutesInput.value || 0, 10)));
+        const s = Math.min(59, Math.max(0, parseInt(secondsInput.value || 0, 10)));
+        hoursInput.value = String(h).padStart(2, "0");
+        minutesInput.value = String(m).padStart(2, "0");
+        secondsInput.value = String(s).padStart(2, "0");
+      });
+    });
+
+    hoursIncBtn.addEventListener("click", () => {
+      const h = Math.min(23, (parseInt(hoursInput.value || 0, 10) + 1));
+      hoursInput.value = String(h).padStart(2, "0");
+    });
+    hoursDecBtn.addEventListener("click", () => {
+      const h = Math.max(0, (parseInt(hoursInput.value || 0, 10) - 1));
+      hoursInput.value = String(h).padStart(2, "0");
+    });
+
+    minutesIncBtn.addEventListener("click", () => {
+      const m = (parseInt(minutesInput.value || 0, 10) + 1) % 60;
+      minutesInput.value = String(m).padStart(2, "0");
+    });
+    minutesDecBtn.addEventListener("click", () => {
+      const m = (parseInt(minutesInput.value || 0, 10) - 1 + 60) % 60;
+      minutesInput.value = String(m).padStart(2, "0");
+    });
+
+    secondsIncBtn.addEventListener("click", () => {
+      const s = (parseInt(secondsInput.value || 0, 10) + 1) % 60;
+      secondsInput.value = String(s).padStart(2, "0");
+    });
+    secondsDecBtn.addEventListener("click", () => {
+      const s = (parseInt(secondsInput.value || 0, 10) - 1 + 60) % 60;
+      secondsInput.value = String(s).padStart(2, "0");
+    });
+
+    confirmTimeBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      updateFocusTimeDisplay();
+      applySettingsToCurrentMode();
+      updateDisplays();
+      closeTimePicker();
+    });
+
+    cancelTimeBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Reset to default timer
+      focusTimeDisplay.textContent = "00:25:00";
+      hoursInput.value = "00";
+      minutesInput.value = "25";
+      secondsInput.value = "00";
+      applySettingsToCurrentMode();
+      updateDisplays();
+      closeTimePicker();
+    });
+    timePickerOverlay.addEventListener("click", (e) => {
+      if (e.target === timePickerOverlay) {
+        closeTimePicker();
+      }
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (!timePickerOverlay.classList.contains("hidden")) {
+          closeTimePicker();
+        }
+      }
+    });
+
+    closeNudge.addEventListener("click", closeNudgeModal);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeNudgeModal();
+    });
+
+    doneNudge.addEventListener("click", () => {
+      const pts = Number(overlay.dataset.nudgePoints || "0");
+      state.points += pts;
+      state.nudgesDone += 1;
+      updateStreakIfNeeded();
+      saveState(state);
+      renderStats();
+      closeNudgeModal();
+    });
+
+    snoozeNudge.addEventListener("click", () => {
+      snoozedUntilMs = Date.now() + 5 * 60 * 1000;
+      closeNudgeModal();
+      updateNextNudgeUI();
+    });
+
+    testNudgeBtn.addEventListener("click", () => {
+      const pick = nudges[Math.floor(Math.random() * nudges.length)];
+      openNudge(pick);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (!timePickerOverlay.classList.contains("hidden")) {
+          closeTimePicker();
+        } else {
+          closeNudgeModal();
+        }
+      }
+    });
+
+    clearDataBtn.addEventListener("click", () => {
+      state = {
+        points: 0,
+        streak: 0,
+        lastStreakDay: "",
+        focusBlocks: 0,
+        nudgesDone: 0,
+        lastNudgeAtMs: 0,
+      };
+      saveState(state);
+      renderStats();
+      updateNextNudgeUI();
+    });
+
+    // Removed duplicate Escape handler
+
+    // Init
+    updateStreakIfNeeded();
+    saveState(state);
+    renderStats();
+    updateDisplays();
+    setMode("focus");
+    updateNextNudgeUI();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Local database & data
+data/
+*.db
+*.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build & Distribution
+dist/
+build/
+.next/
+out/
+
+# OS files
+Thumbs.db
+.directory
+
+# Package lock (can be regenerated from package.json)
+package-lock.json
+yarn.lock
